@@ -61,6 +61,7 @@ for i in range(2048):
 
 start = 2
 
+# game grid values
 girdArray = [[0,0,0,0],
              [0,0,0,0],
              [0,0,0,0],
@@ -70,12 +71,15 @@ girdArray = [[0,0,0,0],
 gridWith = screenSize / 4
 
 # functions
+
+#draw the lines of the grid
 def drawGrid():
     for x in range(4):
         for y in range(4):
             rect = pygame.Rect(x * gridWith, y * gridWith, gridWith, gridWith)
             pygame.draw.rect(screen, (255,255,255), rect, 1)
 
+# place the numbers/blocks inside the grid
 def drawGridNumbers():
     for x in range(4):
         for y in range(4):
@@ -90,7 +94,7 @@ def drawGridNumbers():
                 screen.blit(text, textRect)
 
 
-
+#spawn a block on a random empty spot
 def addBlock():
    spawn = True
    while spawn:
@@ -101,6 +105,9 @@ def addBlock():
        if girdArray[y][x] == 0:
            girdArray[y][x] = n
            spawn = False
+
+
+# spawn the first block
 addBlock()
 
 
@@ -119,10 +126,10 @@ while running:
 
     drawGridNumbers()
 
-
+    # controlls
     def left():
         for y in range(4):
-            for x in range(1, 4):  # Start from the second column
+            for x in range(1, 4):  
                 if girdArray[y][x] != 0:
                     i = x
                     while i > 0:
@@ -142,7 +149,7 @@ while running:
 #
     def right():
         for y in range(4):
-            for x in range(4):  # Start from the third column from the right
+            for x in range(4):  
                 if girdArray[y][x] != 0:
                     i = x
                     while i < 3:
@@ -161,7 +168,7 @@ while running:
 
     def up():
         for x in range(4):
-            for y in range(1, 4):  # Start from the second row
+            for y in range(1, 4):  
                 if girdArray[y][x] != 0:
                     i = y
                     while i > 0:
@@ -178,7 +185,7 @@ while running:
 
     def down():
         for x in range(4):
-            for y in range(2, -1, -1):  # Start from the third row from the bottom
+            for y in range(2, -1, -1):  
                 if girdArray[y][x] != 0:
                     i = y
                     while i < 3:
